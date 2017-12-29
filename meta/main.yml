@@ -1,0 +1,27 @@
+galaxy_info:
+  author: Richard Gibert
+  description: HDP Ambari Server
+  company: N/A
+  license: GPLv3
+  min_ansible_version: 1.2
+  platforms:
+    - name: CentOS
+      versions:
+        - 7
+    - name: RedHat
+      versions:
+        - 7
+    - name: Debian
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - 14.04
+        - 16.04
+  galaxy_tags:
+    - hdp
+    - hadoop
+    - ambari-agent
+
+dependencies:
+  - hdp-ambari-agent

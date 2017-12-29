@@ -1,0 +1,96 @@
+---
+- include: 'repo-{{ ansible_distribution }}.yml'
+
+- block:
+
+  - name: install dependencies
+    package:
+      name: '{{ item }}'
+      state: latest
+    with_items: '{{ ambari_server_dependencies }}'
+    tags:
+      - install_dependencies
+
+  - name: install ambari-server
+    package:
+      name: ambari-server
+      state: latest
+    notify: restart ambari-server
+    tags:
+      - install_ambari_server
+
+  - name: push setup expect script
+    template:
+      src: templates/ambari-server-setup.expect.j2
+      dest: /usr/local/sbin/ambari-server-setup.expect
+      owner: '{{ ambari_server_user }}'
+      group: '{{ ambari_server_group }}'
+      mode: '0755'
+    tags:
+      - deploy_ambari_server_setup_script
+
+  - name: ambari-server setup
+    command:
+      /usr/local/sbin/ambari-server-setup.expect
+    tags:
+      - run_ambari_server_setup_script
+
+  - name: install MySQL/MariaDB JDBC driver
+    get_url:
+      url: "{{ mysql_client_jar_url }}/{{ mysql_client_jar_file }}"
+      dest: /usr/share/java/{{ mysql_client_jar_file }}"
+      owner: root
+      group: root
+      mode: '0644'
+    tags:
+      - install_mysql_jdbc
+
+  - name: fix config file permissions
+    file:
+      path: '{{ item }}'
+      owner: '{{ ambari_server_user }}'
+      group: '{{ ambari_server_group }}'
+      mode: '0644'
+    with_fileglob:
+      - /etc/ambari-server/conf/*.conf
+      - /etc/ambari-server/conf/*.properties
+    tags:
+      - fix_config_perms
+
+  - name: create log path
+    file:
+      state: directory
+      path: '{{ ambari_server_log_dir }}'
+      owner: '{{ ambari_server_user }}'
+      group: '{{ ambari_server_group }}'
+      mode: '0755'
+    tags:
+      - create_log_path
+
+  - name: update configs
+    lineinfile:
+      dest: '/etc/ambari-server/conf/{{ item.f }}'
+      regexp: '{{ item.re }}'
+      line: '{{ item.l }}'
+    notify: restart ambari-server
+    with_items:
+      - f: ambari.properties
+        re: '^server.jdbc.driver.path=.*'
+        l: 'server.jdbc.driver.path=/usr/share/java/{{ mysql_client_jar_file }}'
+      - f: log4j.properties
+        re: '^ambari.log.dir=.*'
+        l: 'ambari.log.dir=${ambari.root.dir}{{ ambari_server_log_dir }}'
+    tags:
+      - update_config
+
+  - name: start and enable ambari-server
+    service:
+      name: ambari-server
+      state: started
+      enabled: yes
+    tags:
+      - start_ambari_server
+      - enable_ambari_server
+
+  tags:
+    - ambari-server

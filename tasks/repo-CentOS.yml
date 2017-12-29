@@ -1,0 +1,15 @@
+---
+- block:
+
+  - name: download repo file
+    get_url:
+      url: "{{ ambari_repo_url_centos }}/ambari.repo"
+      dest: /etc/yum.repos.d/ambari.repo
+      owner: root
+      group: root
+      mode: '0644'
+    tags:
+      - install_repo
+
+  tags:
+    - ambari-server
