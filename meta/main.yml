@@ -8,8 +8,17 @@ galaxy_info:
     - name: EL
       versions:
         - 7
+    - name: Ubuntu
+      versions:
+        - artful
+        - bionic
+        - trusty
+        - xenial
   galaxy_tags:
     - hdp-ambari-server
 
 dependencies:
   - rgibert.hdp-ambari-agent
+  - role: rgibert.user-setup
+    user_setup_group: "{{ ambari_server_group }}"
+    user_setup_username: "{{ ambari_server_user }}"
