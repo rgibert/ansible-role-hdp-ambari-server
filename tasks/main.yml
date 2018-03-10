@@ -19,22 +19,6 @@
     tags:
       - install_ambari_server
 
-  - name: push setup expect script
-    template:
-      src: templates/ambari-server-setup.expect.j2
-      dest: /usr/local/sbin/ambari-server-setup.expect
-      owner: '{{ ambari_server_user }}'
-      group: '{{ ambari_server_group }}'
-      mode: '0755'
-    tags:
-      - deploy_ambari_server_setup_script
-
-  - name: ambari-server setup
-    command:
-      /usr/local/sbin/ambari-server-setup.expect
-    tags:
-      - run_ambari_server_setup_script
-
   - name: install MySQL/MariaDB JDBC driver
     get_url:
       url: "{{ mysql_client_jar_url }}/{{ mysql_client_jar_file }}"

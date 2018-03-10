@@ -5,23 +5,11 @@ galaxy_info:
   license: GPLv3
   min_ansible_version: 1.2
   platforms:
-    - name: CentOS
+    - name: EL
       versions:
         - 7
-    - name: RedHat
-      versions:
-        - 7
-    - name: Debian
-      versions:
-        - 7
-    - name: Ubuntu
-      versions:
-        - 14.04
-        - 16.04
   galaxy_tags:
-    - hdp
-    - hadoop
-    - ambari-agent
+    - hdp-ambari-server
 
 dependencies:
-  - hdp-ambari-agent
+  - rgibert.hdp-ambari-agent
