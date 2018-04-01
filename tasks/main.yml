@@ -1,5 +1,5 @@
 ---
-- include: 'repo-{{ ansible_distribution }}.yml'
+- include: 'repo-{{ ansible_os_family }}.yml'
 
 - block:
 

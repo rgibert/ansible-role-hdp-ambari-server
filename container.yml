@@ -1,0 +1,11 @@
+version: "2"
+settings:
+  conductor:
+    base: centos:7
+  project_name: hdp-ambari-server
+services:
+  hdp_ambari_server:
+    from: "rgibert/hdp-ambari-agent:latest-centos-7"
+    roles:
+      - rgibert.hdp-ambari-server
+registries: {}

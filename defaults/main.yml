@@ -7,7 +7,7 @@ java_cacerts_pass: changeit
 mysql_client_jar_url: "http://central.maven.org/maven2/mysql/mysql-connector-java/6.0.6"
 mysql_client_jar_file: mysql-connector-java-6.0.6.jar
 
-ambari_version: 2.5.2.0
+ambari_version: 2.6.1.5
 ambari_repo_url_centos: "http://public-repo-1.hortonworks.com/ambari/centos{{ ansible_distribution_major_version }}/2.x/updates/{{ ambari_version }}"
 ambari_repo_url_deb: "http://public-repo-1.hortonworks.com/ambari/{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}/2.x/updates/{{ ambari_version }}"
 
