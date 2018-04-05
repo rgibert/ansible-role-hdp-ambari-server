@@ -18,8 +18,6 @@ galaxy_info:
     - hdp-ambari-server
 
 dependencies:
-  - role: rgibert.user-setup
-    user_setup_group: "{{ ambari_server_group }}"
-    user_setup_username: "{{ ambari_server_user }}"
-  - role: rgibert.hdp-ambari-agent
-  - role: rgibert.openjdk-jdk
+  - { role: rgibert.user-setup, user_setup_group: "{{ ambari_server_group }}", user_setup_username: "{{ ambari_server_user }}" }
+  - { role: rgibert.hdp-ambari-agent }
+  - { role: rgibert.openjdk-jdk }
