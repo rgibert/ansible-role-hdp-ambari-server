@@ -1,1 +1,4 @@
+- src: rgibert.user-setup
+- src: rgibert.hdp-ambari-agent
+- src: rgibert.openjdk-jdk
 - src: rgibert.hdp-ambari-server
