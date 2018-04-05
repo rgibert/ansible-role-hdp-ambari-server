@@ -1,15 +1,7 @@
 ---
-- include: 'repo-{{ ansible_os_family }}.yml'
-
 - block:
 
-  - name: install dependencies
-    package:
-      name: '{{ item }}'
-      state: latest
-    with_items: '{{ ambari_server_dependencies }}'
-    tags:
-      - install_dependencies
+  - include_tasks: 'repo-{{ ansible_os_family }}.yml'
 
   - name: install ambari-server
     package:

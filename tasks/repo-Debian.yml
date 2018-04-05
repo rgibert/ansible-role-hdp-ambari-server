@@ -1,12 +1,7 @@
 ---
-- block:
-
-  - name: setup apt source
-    apt_repository:
-      repo: "deb {{ ambari_repo_url_deb }} Ambari main"
-      filename: ambari.list
-    tags:
-      - install_repo
-
+- name: setup apt source
+  apt_repository:
+    repo: "deb {{ ambari_repo_url_deb }} Ambari main"
+    filename: ambari.list
   tags:
-    - ambari-server
+    - install_repo
