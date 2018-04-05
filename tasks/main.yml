@@ -1,7 +1,8 @@
 ---
 - block:
 
-  - include_tasks: 'repo-{{ ansible_os_family }}.yml'
+  - name: include repo file tasks
+    include_tasks: 'repo-{{ ansible_os_family }}.yml'
 
   - name: install ambari-server
     package:
