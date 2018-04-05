@@ -2,7 +2,7 @@ galaxy_info:
   author: Richard Gibert
   description: HDP Ambari Server
   license: GPLv3
-  min_ansible_version: 1.2
+  min_ansible_version: 2.4
   min_ansible_container_version: 0.9.2
   platforms:
     - name: EL

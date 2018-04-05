@@ -7,5 +7,5 @@ services:
   hdp_ambari_server:
     from: "rgibert/hdp-ambari-agent:latest-centos-7"
     roles:
-      - { role: rgibert.hdp-ambari-server }
+      - { role: rgibert.hdp-ambari-server, ambari_server_dockerize: true }
 registries: {}

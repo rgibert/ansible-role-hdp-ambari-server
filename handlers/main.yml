@@ -3,3 +3,5 @@
   service:
     name: ambari-server
     state: restarted
+  when:
+    - not ambari_server_dockerize
