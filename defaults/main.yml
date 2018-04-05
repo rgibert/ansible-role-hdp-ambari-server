@@ -12,8 +12,8 @@ ambari_server_port: 8440
 ambari_server_secure_port: 8441
 
 ambari_server_mysql_client_jar_version: 6.0.6
-ambari_server_mysql_client_jar_url: "http://central.maven.org/maven2/mysql/mysql-connector-java/{{ mysql_client_jar_version }}"
-ambari_server_mysql_client_jar_file: "mysql-connector-java-{{ mysql_client_jar_version }}.jar"
+ambari_server_mysql_client_jar_url: "http://central.maven.org/maven2/mysql/mysql-connector-java/{{ ambari_server_mysql_client_jar_version }}"
+ambari_server_mysql_client_jar_file: "mysql-connector-java-{{ ambari_server_mysql_client_jar_version }}.jar"
 
 ambari_server_jdk_home: /etc/alternatives/java_sdk
 ambari_server_java_home: "{{ ambari_server_jdk_home }}"
